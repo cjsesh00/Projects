@@ -1,30 +1,67 @@
 /**
  * Example store structure
  */
-const store = {
+const DATA = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What color is broccoli?',
+      id: cuid(),
+      question: 'What was the name of George Jetson\'s son on the Hanna-Barbera cartoon The Jetsons?',
       answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
+        'Tim',
+        'Elroy',
+        'George Junior',
+        'Steven'
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'Elroy'
+    },
+    
+    {
+      id: cuid(),
+      question: 'Which cartoon character\'s catchphrase was \'It\'s wabbit season and I\'m hunting wabbits\'?',
+      answers: [
+        'Elmer Fudd',
+        'Wiley Coyote',
+        'Yosemite Sam',
+        'Fred Flintstone'
+      ],
+      correctAnswer:'Elmer Fudd'
     },
     {
-      question: 'What is the current year?',
+      id: cuid(),
+      question: 'Yogi Bear is famous for stealing pic-a-nic baskets. Where does he live?',
       answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
+        'Jellystone Park',
+        'Big Bear State Park',
+        'Happy Springs Park',
+        'Furry Creek'
       ],
-      correctAnswer: '2019'
+      correctAnswer:'Jellystone Park'
+    },
+    {
+      id: cuid(),
+      question: 'What was the name of Rocko\'s dog in Rocko\'s Modern Life?',
+      answers: [
+        'Fido',
+        'Spot',
+        'Spunky',
+        'Tex'
+      ],
+      correctAnswer: 'Spunky!'
+    },
+    {
+      id: cuid(),
+      question: 'What is Spongebob and Sandy\'s favorite sport in Spongebob Squarepants?',
+      answers: [
+        'Jellyfishing',
+        'Karate',
+        'Rugby',
+        'Basketball'
+      ],
+      correctAnswer: 'Ka-ra-te'
     }
   ],
+
   questionNumber: 0,
   score: 0
 };
@@ -41,3 +78,79 @@ const store = {
  * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
  *
  */
+
+function main() {
+
+
+  console.log('main fired');
+}
+
+function renderPage() {
+
+
+
+  console.log('renderPage fired');
+}
+
+
+function startQuiz() {
+//displays intro and welcomes user to quiz
+
+  console.log('startQuiz fired');
+}
+
+function displayButtons() {
+  //generates radio buttons to be used as answer selection
+      <input type="radio" id="answer1" name="answer1" value= 0>
+      <label for=""></label><br>
+      <input type="radio" id="answer2" name="answer2" value= 1>
+      <label for=""></label><br>
+      <input type="radio" id="answer3" name="answer3" value= 2>
+      <label for=""></label><br>
+      <input type="radio" id="answer4" name="answer4" value= 3>
+      <label for=""></label><br>
+      
+      <input type= "Submit"></input>
+
+  console.log('displayButtons has fired');
+}
+function buttonSelection() {
+//delegates listener to radio buttons and returns input value
+
+
+  console.log('buttonSelection fired');
+}
+
+function displayQuestion() {
+  //generates html to be used by render() displaying the current question
+
+
+  console.log('displayQuestion fired');
+}
+
+function submitAnswer() {
+  //delegates listener to 'submit' button when user has finalized answer to question,
+  //and calls answerCheck()  
+
+  console.log('submitAnswer fired');
+}
+
+function answerCheck() {
+  //validates user submission vs correct 'answer' and calls answerCorrect()
+  //if user answered correctly. calls displayQuestion() after validation.
+
+  console.log('answerCheck has fired');
+}
+
+function answerCorrect() {
+  //updates 'score' in 'DATA'
+
+  console.log('answerCorrect fired');
+}
+
+
+
+
+
+
+$(main);
