@@ -64,63 +64,15 @@ const STORE = {
     }
   ],
   quizStarted: false,
-  questionNumber: 0,
+  currentQuestion: 0,
   score: 0
 };
-
-/**
- *
- * Your app should include a render() function, that regenerates
- * the view each time the store is updated. See your course
- * material, consult your instructor, and reference the slides
- * for more details.
- *
- * NO additional HTML elements should be added to the index.html file.
- *
- * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
- *
- */
-
-//function buttonSelection() {
-//delegates listener to radio buttons and returns input value
-
-
-  //console.log('buttonSelection fired');
-//}
-
-///function displayQuestion() {
-  //generates html to be used by render() displaying the current question
-
-
-  //console.log('displayQuestion fired');
-//}
-
-//function submitAnswer() {
-  //delegates listener to 'submit' button when user has finalized answer to question,
-  //and calls answerCheck()  
-
-  //console.log('submitAnswer fired');
-//}
-
-//function answerCheck() {
-  //validates user submission vs correct 'answer' and calls answerCorrect()
-  //if user answered correctly. calls displayQuestion() after validation.
-
-  //console.log('answerCheck has fired');
-//}
-
-//function answerCorrect() {
-  //updates 'score' in 'DATA'
-    //STORE.score ++;
-
-  //console.log('answerCorrect fired');
-//}
-
-
 
 
 /******************* TEMPLATE GENERATION FUNCTIONS *******************/
 // These functions return HTML templates
+
+// This function generates the start screen
 function generateStartScreenHtml(){
   return `
   <div class = "start-screen">
@@ -129,7 +81,7 @@ function generateStartScreenHtml(){
   <div>
   `;
 }
-
+// This function returns the HTML template for the question number and score display
 function generateQuestionNumberAndScoreHtml() {
   return `
   <ul class="question and score">
@@ -139,9 +91,11 @@ function generateQuestionNumberAndScoreHtml() {
     <li id="score">
       Score: ${STORE.score}/${STORE.questions.length}
     </li>
-  <ul>`
+  <ul>
+  `;
 }
 
+// This function generates the answer html
 function generateAnswersHtml(){
   const answersArray = STORE.questions[STORE.currentQuestion].answers;
   let answersHtml = '';
@@ -159,7 +113,7 @@ function generateAnswersHtml(){
   return answersHtml;
 }
 
-
+// This function generates the question html
 function generateQuestionHtml(){
   let currentQuestion = STORE.questions[STORE.currentQuestion];
   return `
@@ -177,6 +131,23 @@ function generateQuestionHtml(){
         <button type="button" id="next-question-btn" tabindex="6">Next></button>
       </fieldset>
     </form>
+  `;
+}
+
+// This function generates the results html
+function generateResultsScreen(){
+  return `
+  <div class="results>
+    <form id="js-restart-quiz">
+      <fieldset>
+        <div class="row">
+          <div class="col-12">
+            <legend>Your Score is: ${STORE.score}/${STORE.questions.length}</legend>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
   `;
 }
 
@@ -199,11 +170,12 @@ function render() {
   else {
     $('main').html(generateResultsScreen());
   }
-  // console.log('render fired');
 }
 
 /******************* EVENT HANDLER FUNCTIONS *******************/
 // These functions handle events (submit, click, etc)
+
+// This function handles users clicking the start button
 function handleStartClick(){
   $('main').on('click', '#start', function(event) {
     STORE.quizStarted = true;
@@ -211,14 +183,24 @@ function handleStartClick(){
   });
 }
 
+// This function handles users clicking the next question button
 function handleNextQuestionClick(){
-  $('main').on('click', function(event) {
-    
+  $('main').on('click','#submit-answer-btn', function(event) {
+    STORE.currentQuestion ++;
+    render();
   });
 }
 
+// This function handles users clicking the submit button on the question form
 function handleQuestionFormSubmission(){
 
+}
+
+// These functions handle users clicking the restart quiz button
+function restartQuiz(){
+  STORE.quizStarted = false;
+  STORE.currentQuestion = 0;
+  STORE.score = 0;
 }
 
 function handleRestartButtonClick(){
@@ -228,18 +210,13 @@ function handleRestartButtonClick(){
   });
 }
 
+// This function handles page load
 function handleQuizApp() {
   render();
   handleStartClick();
   handleNextQuestionClick();
   handleQuestionFormSubmission();
   handleRestartButtonClick();
-}
-
-function restartQuiz(){
-  STORE.quizStarted = false;
-  STORE.currentQuestion = 0;
-  STORE.score = 0;
 }
 
 $(handleQuizApp);
