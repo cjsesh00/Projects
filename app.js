@@ -97,10 +97,15 @@ function main() {
 
 function startQuiz() {
 //displays intro and welcomes user to quiz
-  const pageHeader = '<h1>How well do you know your favorite Cartoon Characters?</h1><a href="#" class = "startQuiz"></a>'
-  const startButton = '<input type= "Submit"></input>';
-  $('header').html(pageHeader);
-  $('a').after().html(startButton);
+  const intro = 
+  `
+  <div class = "start">
+  <h1>How well do you know your favorite cartoon characters</h1>
+  <a href =><input type= "Submit"></input></a>
+  <div>
+  `
+
+  $("main").html(intro)
 
   console.log('startQuiz fired');
 }
