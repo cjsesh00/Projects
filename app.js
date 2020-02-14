@@ -125,7 +125,7 @@ function generateStartScreenHtml(){
   return `
   <div class = "start-screen">
   <h1>How well do you know your favorite cartoon characters</h1>
-  <a href =><input type= "Submit"></input></a>
+  <button type="button" id="start">Start Quiz</button>
   <div>
   `;
 }
@@ -157,6 +157,27 @@ function generateAnswersHtml(){
     i++;
   });
   return answersHtml;
+}
+
+
+function generateQuestionHtml(){
+  let currentQuestion = STORE.questions[STORE.currentQuestion];
+  return `
+    <form id="question-form" class="question-form">
+      <fieldset>
+        <div class="question">
+          <legend>${currentQuestion.question}</legend>
+        </div>
+        <div class="options">
+          <div class="answers">
+            ${generateAnswersHtml()}
+          </div>
+        </div>
+        <button type="submit" id="submit-answer-btn" tabindex="5">Submit</button>
+        <button type="button" id="next-question-btn" tabindex="6">Next></button>
+      </fieldset>
+    </form>
+  `;
 }
 
 /******************* RENDER FUNCTION(S) *******************/
@@ -201,7 +222,10 @@ function handleQuestionFormSubmission(){
 }
 
 function handleRestartButtonClick(){
-
+  $('body').on('click', '#restart', () => {
+    restartQuiz();
+    render();
+  });
 }
 
 function handleQuizApp() {
