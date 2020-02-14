@@ -1,7 +1,9 @@
 /**
  * Example store structure
  */
-const DATA = {
+'use strict';
+
+const STORE = {
   // 5 or more questions are required
   questions: [
     {
@@ -80,73 +82,79 @@ const DATA = {
  */
 
 function main() {
-
+  startQuiz();
 
   console.log('main fired');
 }
 
-function renderPage() {
+//function renderPage() {
+  
 
 
-
-  console.log('renderPage fired');
-}
+  //console.log('renderPage fired');
+//}
 
 
 function startQuiz() {
 //displays intro and welcomes user to quiz
+  const pageHeader = '<h1>How well do you know your favorite Cartoon Characters?</h1><a href="#" class = "startQuiz"></a>'
+  const startButton = '<input type= "Submit"></input>';
+  $('header').html(pageHeader);
+  $('a').after().html(startButton);
 
   console.log('startQuiz fired');
 }
 
-function displayButtons() {
+//function displayButtons() {
   //generates radio buttons to be used as answer selection
-      <input type="radio" id="answer1" name="answer1" value= 0>
-      <label for=""></label><br>
-      <input type="radio" id="answer2" name="answer2" value= 1>
-      <label for=""></label><br>
-      <input type="radio" id="answer3" name="answer3" value= 2>
-      <label for=""></label><br>
-      <input type="radio" id="answer4" name="answer4" value= 3>
-      <label for=""></label><br>
+      //<input type="radio" id="answer1" name="answer1" value= 0>
+      //<label for=""></label><br>
+      //<input type="radio" id="answer2" name="answer2" value= 1>
+      //<label for=""></label><br>
+      //<input type="radio" id="answer3" name="answer3" value= 2>
+      //<label for=""></label><br>
+      //<input type="radio" id="answer4" name="answer4" value= 3>
+      //<label for=""></label><br>
       
-      <input type= "Submit"></input>
+      //<input type= "Submit"></input>
 
-  console.log('displayButtons has fired');
-}
-function buttonSelection() {
+  //console.log('displayButtons has fired');
+//}
+
+//function buttonSelection() {
 //delegates listener to radio buttons and returns input value
 
 
-  console.log('buttonSelection fired');
-}
+  //console.log('buttonSelection fired');
+//}
 
-function displayQuestion() {
+///function displayQuestion() {
   //generates html to be used by render() displaying the current question
 
 
-  console.log('displayQuestion fired');
-}
+  //console.log('displayQuestion fired');
+//}
 
-function submitAnswer() {
+//function submitAnswer() {
   //delegates listener to 'submit' button when user has finalized answer to question,
   //and calls answerCheck()  
 
-  console.log('submitAnswer fired');
-}
+  //console.log('submitAnswer fired');
+//}
 
-function answerCheck() {
+//function answerCheck() {
   //validates user submission vs correct 'answer' and calls answerCorrect()
   //if user answered correctly. calls displayQuestion() after validation.
 
-  console.log('answerCheck has fired');
-}
+  //console.log('answerCheck has fired');
+//}
 
-function answerCorrect() {
+//function answerCorrect() {
   //updates 'score' in 'DATA'
+    //STORE.score ++;
 
-  console.log('answerCorrect fired');
-}
+  //console.log('answerCorrect fired');
+//}
 
 
 
