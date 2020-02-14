@@ -8,26 +8,26 @@ const STORE = {
   questions: [
     {
       id: cuid(),
-      question: `What was the name of George Jetson's son on the Hanna-Barbera cartoon The Jetsons?`,
+      question: 'What was the name of George Jetson\'s son on the Hanna-Barbera cartoon The Jetsons?',
       answers: [
         'Tim',
         'Elroy',
         'George Junior',
         'Steven'
       ],
-      correct: 1
+      correctAnswer: 1
     },
     
     {
       id: cuid(),
-      question: `Which cartoon character's catchphrase was 'It's wabbit season and I'm hunting wabbits?`,
+      question: 'Which cartoon character\'s catchphrase was \'It\'s wabbit season and I\'m hunting wabbits?',
       answers: [
         'Elmer Fudd',
         'Wiley Coyote',
         'Yosemite Sam',
         'Fred Flintstone'
       ],
-      correct:0
+      correctAnswer:0
     },
     {
       id: cuid(),
@@ -38,29 +38,29 @@ const STORE = {
         'Happy Springs Park',
         'Furry Creek'
       ],
-      correct: 0
+      correctAnswer: 0
     },
     {
       id: cuid(),
-      question: `What was the name of Rocko's dog in Rocko's Modern Life?`,
+      question: 'What was the name of Rocko\'s dog in Rocko\'s Modern Life?',
       answers: [
         'Fido',
         'Spot',
         'Spunky',
         'Tex'
       ],
-      correct: 2
+      correctAnswer: 2
     },
     {
       id: cuid(),
-      question: `What is Spongebob and Sandy's favorite sport in Spongebob Squarepants?`,
+      question: 'What is Spongebob and Sandy\'s favorite sport in Spongebob Squarepants?',
       answers: [
         'Jellyfishing',
         'Karate',
         'Rugby',
         'Basketball'
       ],
-      correct: 1
+      correctAnswer: 1
     }
   ],
   quizStarted: false,
@@ -185,7 +185,7 @@ function handleStartClick(){
 
 // This function handles users clicking the next question button
 function handleNextQuestionClick(){
-  $('main').on('click','#submit-answer-btn', function(event) {
+  $('main').on('click','#next-question-btn', function(event) {
     STORE.currentQuestion ++;
     render();
   });
@@ -193,7 +193,24 @@ function handleNextQuestionClick(){
 
 // This function handles users clicking the submit button on the question form
 function handleQuestionFormSubmission(){
+  $(main.on('click', '#submit-answer-btn', function(event){
+    event.preventDefault();
+    const currentQuestion= STORE.questions[STORE.currentQuestion];
+    let selectedOption = $('input[name=options]:checked').val();
+    let optionContainerId =`#option-container-${currentQuestion.answers.findIndex(i => i === selectedOption)}`;
+    if(selectedOption === currentQuestion.correctAnswer) {
+      STORE.score ++;
+      $(optionContainerId).html(generateFeedbackHtml('correct'));
+    } else {
+      $(optionContainerId).html(generateFeedbackHtml('incorrect'));
+    }
+    STORE.currentQuestion++;
+    $('submit-answer-btn').hide();
+    $('input[type= radio]').each(() => {
+      $('input[type= radio]').attr('disabled', true);
+    });
 
+  } ));
 }
 
 // These functions handle users clicking the restart quiz button
