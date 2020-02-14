@@ -6,26 +6,26 @@ const DATA = {
   questions: [
     {
       id: cuid(),
-      question: 'What was the name of George Jetson\'s son on the Hanna-Barbera cartoon The Jetsons?',
+      question: `What was the name of George Jetson's son on the Hanna-Barbera cartoon The Jetsons?`,
       answers: [
         'Tim',
         'Elroy',
         'George Junior',
         'Steven'
       ],
-      correctAnswer: 'Elroy'
+      correct: 1
     },
     
     {
       id: cuid(),
-      question: 'Which cartoon character\'s catchphrase was \'It\'s wabbit season and I\'m hunting wabbits\'?',
+      question: `Which cartoon character's catchphrase was 'It's wabbit season and I'm hunting wabbits?`,
       answers: [
         'Elmer Fudd',
         'Wiley Coyote',
         'Yosemite Sam',
         'Fred Flintstone'
       ],
-      correctAnswer:'Elmer Fudd'
+      correct:0
     },
     {
       id: cuid(),
@@ -36,29 +36,29 @@ const DATA = {
         'Happy Springs Park',
         'Furry Creek'
       ],
-      correctAnswer:'Jellystone Park'
+      correct: 0
     },
     {
       id: cuid(),
-      question: 'What was the name of Rocko\'s dog in Rocko\'s Modern Life?',
+      question: `What was the name of Rocko's dog in Rocko's Modern Life?`,
       answers: [
         'Fido',
         'Spot',
         'Spunky',
         'Tex'
       ],
-      correctAnswer: 'Spunky!'
+      correct: 2
     },
     {
       id: cuid(),
-      question: 'What is Spongebob and Sandy\'s favorite sport in Spongebob Squarepants?',
+      question: `What is Spongebob and Sandy's favorite sport in Spongebob Squarepants?`,
       answers: [
         'Jellyfishing',
         'Karate',
         'Rugby',
         'Basketball'
       ],
-      correctAnswer: 'Ka-ra-te'
+      correct: 1
     }
   ],
 
