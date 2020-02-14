@@ -87,12 +87,22 @@ function main() {
   console.log('main fired');
 }
 
-//function renderPage() {
-  
+function renderPage() {
+  let html = '';
 
+  if (STORE.quizStarted === false) {
+    $('main').html(generateStartScreenHtml());
+    return;
+  }
 
-  //console.log('renderPage fired');
-//}
+  else if (STORE.currentQuestion < STORE.questions.length) {
+    html = generateQuestionNumberAndScoreHtml();
+    html += generateQuestionHtml();
+    $('main').html(html);
+  }
+
+  // console.log('renderPage fired');
+}
 
 
 function startQuiz() {
