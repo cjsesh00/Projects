@@ -1,7 +1,7 @@
 'use strict';
 
 const STORE = {
-  
+
   questions: [
     {
       id: cuid(),
@@ -189,6 +189,7 @@ function handleNextQuestionClick(){
 }
 
 // This function handles users clicking the submit button on the question form
+// Parts of this code are deprecated and it will have to be modified before submission
 function handleQuestionFormSubmission(){
   $(main.on('click', '#submit-answer-btn', function(event){
     event.preventDefault();
