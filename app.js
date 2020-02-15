@@ -153,17 +153,18 @@ function generateResultsScreen(){
 function render() {
   let html = '';
 
+  // This makes the start screen appear if the user isn't playing yet
   if (STORE.quizStarted === false) {
     $('main').html(generateStartScreenHtml());
     return;
   }
-
+  // This makes the question page appear if the user is taking the quiz
   else if (STORE.currentQuestion < STORE.questions.length) {
     html = generateQuestionNumberAndScoreHtml();
     html += generateQuestionHtml();
     $('main').html(html);
   }
-  
+  // This makes the results screen appear if the user is done with the quiz
   else {
     $('main').html(generateResultsScreen());
   }
@@ -191,7 +192,7 @@ function handleNextQuestionClick(){
 // This function handles users clicking the submit button on the question form
 // Parts of this code are deprecated and it will have to be modified before submission
 function handleQuestionFormSubmission(){
-  $(main.on('click', '#submit-answer-btn', function(event){
+  $('main').on('click', '#submit-answer-btn', function(event){
     event.preventDefault();
     const currentQuestion= STORE.questions[STORE.currentQuestion];
     let selectedOption = $('input[name=options]:checked').val();
@@ -208,7 +209,7 @@ function handleQuestionFormSubmission(){
       $('input[type= radio]').attr('disabled', true);
     });
 
-  } ));
+  });
 }
 
 // These functions handle users clicking the restart quiz button
