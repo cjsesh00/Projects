@@ -1,10 +1,7 @@
-/**
- * Example store structure
- */
 'use strict';
 
 const STORE = {
-  // 5 or more questions are required
+  
   questions: [
     {
       id: cuid(),
