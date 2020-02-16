@@ -86,7 +86,7 @@ function generateQuestionNumberAndScoreHtml() {
       Question Number: ${STORE.currentQuestion + 1}/${STORE.questions.length}
     </li>
     <li id="score">
-      Score: ${STORE.score}/${STORE.questions.length}
+      Score: ${STORE.score}
     </li>
   <ul>
   `;
@@ -125,7 +125,7 @@ function generateQuestionHtml(){
           </div>
         </div>
         <button type="submit" id="submit-answer-btn" tabindex="5">Submit</button>
-        <button type="button" id="next-question-btn" tabindex="6">Next></button>
+        <button type="button" id="next-question-btn" tabindex="6">Next</button>
       </fieldset>
     </form>
   `;
@@ -207,20 +207,21 @@ function handleNextQuestionClick(){
 
 // This function does answer checky things
 
-function answerChecker(){
-  
+function answerChecker(myVal){
+  const selection = $(`#option${i}`);
+
   let foo = STORE.questions[STORE.currentQuestion];
-  console.log(foo.correctAnswer);
+  console.log(selection.checked());
   for (let i = 0; i < 5; i++) {
-    
-    if ($(`option${i}`).val() === foo.correctAnswer){
+    if (selection.checked){
+      if (selection.val() = foo.correctAnswer)
       STORE.score++;
       return true;
-    } else {
-      return false;
     }
   }
+  return false;
 }
+
 
 // This function handles users clicking the submit button on the question form
 // Parts of this code are disallowed and it will have to be modified before submission
@@ -255,4 +256,4 @@ function handleQuizApp() {
   handleRestartButtonClick();
 }
 
-$(handleQuizApp);
+$(handleQuizApp)
