@@ -151,8 +151,8 @@ function generateResultsScreen(){
 
 // This function generates the feedback html
 function generateFeedbackHtml(i){
-  let foo = "Correct";
-  let bar = "Incorrect";
+  let foo = 'Correct';
+  let bar = 'Incorrect';
   if(i === true) {
     i = foo;
   } else {
@@ -208,18 +208,10 @@ function handleNextQuestionClick(){
 // This function does answer checky things
 
 function answerChecker(myVal){
-  const selection = $(`#option${i}`);
+  
 
-  let foo = STORE.questions[STORE.currentQuestion];
-  console.log(selection.checked());
-  for (let i = 0; i < 5; i++) {
-    if (selection.checked){
-      if (selection.val() = foo.correctAnswer)
-      STORE.score++;
-      return true;
-    }
-  }
-  return false;
+  
+    
 }
 
 
@@ -228,7 +220,21 @@ function answerChecker(myVal){
 function handleQuestionFormSubmission(){
   $('main').on('click', '#submit-answer-btn', function(event){
     event.preventDefault();
-    generateFeedbackHtml(answerChecker());
+    let foo = STORE.questions[STORE.currentQuestion];
+    
+    for (let i = 0; i < 4; i++) {
+      if($(`#options${i}`.checked === true)){
+        console.log('we made it inside the 1st if statement');
+        console.log(`${$(`#option${i}`).value}`)
+        if(foo.correctAnswer === $(`#option${i}`).value){
+          console.log("inside 2nd if statement...");
+          STORE.score++;
+          generateFeedbackHtml(true);
+        }
+        console.log("never made into 2nd if statement");
+      }
+      generateFeedbackHtml(false);
+    }
   });
 }
 
@@ -256,4 +262,4 @@ function handleQuizApp() {
   handleRestartButtonClick();
 }
 
-$(handleQuizApp)
+$(handleQuizApp);
