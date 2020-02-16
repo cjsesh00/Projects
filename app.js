@@ -101,7 +101,7 @@ function generateAnswersHtml(){
   answersArray.forEach(answer => {
     answersHtml += `
     <div id="option-container-${i}">
-      <input type="radio" name="options" id="option${i+1}" value="${answer}" tabindex="${i + 1} required>
+      <input type="radio" name="options" id="option${i+1}" value=${i} tabindex="${i + 1} required>
       <label for="option${i +1}">${answer}</label>
     </div>
     `;
@@ -134,7 +134,7 @@ function generateQuestionHtml(){
 // This function generates the results html
 function generateResultsScreen(){
   return `
-  <div class="results>
+  <div class="results">
     <form id="js-restart-quiz">
       <fieldset>
         <div class="row">
@@ -148,6 +148,15 @@ function generateResultsScreen(){
   `;
 }
 
+
+// This function generates the feedback html
+function generateFeedbackHtml(i){
+  return `
+  <div class="feedback">
+    <h2>Your answer was ${i}!</h2>
+  </div>
+  `;
+}
 /******************* RENDER FUNCTION(S) *******************/
 // This function conditionally replaces the contents of the <main> tag based on the state of the store
 function render() {
@@ -190,12 +199,12 @@ function handleNextQuestionClick(){
 }
 
 // This function handles users clicking the submit button on the question form
-// Parts of this code are deprecated and it will have to be modified before submission
+// Parts of this code are disallowed and it will have to be modified before submission
 function handleQuestionFormSubmission(){
   $('main').on('click', '#submit-answer-btn', function(event){
     event.preventDefault();
     const currentQuestion= STORE.questions[STORE.currentQuestion];
-    let selectedOption = $('input[name=options]:checked').val();
+    let selectedOption = $(answerChecker()).val();
     let optionContainerId =`#option-container-${currentQuestion.answers.findIndex(i => i === selectedOption)}`;
     if(selectedOption === currentQuestion.correctAnswer) {
       STORE.score ++;
@@ -212,6 +221,14 @@ function handleQuestionFormSubmission(){
   });
 }
 
+function answerChecker(){
+  for (let i = 0; i < 4; i++){
+    $(`#option${i}`).val();
+    console.log($(`#option${i}`).val());
+  }
+}
+
+answerChecker();
 // These functions handle users clicking the restart quiz button
 function restartQuiz(){
   STORE.quizStarted = false;
