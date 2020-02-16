@@ -139,7 +139,7 @@ function generateResultsScreen(){
       <fieldset>
         <div class="row">
           <div class="col-12">
-            <legend>Your Score is: ${STORE.score}/${STORE.questions.length}</legend>
+            <legend>Your Score is: ${STORE.score}</legend>
           </div>
         </div>
       </fieldset>
@@ -151,6 +151,13 @@ function generateResultsScreen(){
 
 // This function generates the feedback html
 function generateFeedbackHtml(i){
+  let foo = "Correct";
+  let bar = "Incorrect";
+  if(i === true) {
+    i = foo;
+  } else {
+    i = bar;
+  }
   return `
   <div class="feedback">
     <h2>Your answer was ${i}!</h2>
@@ -201,9 +208,13 @@ function handleNextQuestionClick(){
 // This function does answer checky things
 
 function answerChecker(){
-  let currentQuestion = STORE.questions[STORE.currentQuestion];
-  for (let i = 0; i < 5; i++){
-    if ($(`options${i}`).val() === currentQuestion.correctAnswer){
+  
+  let foo = STORE.questions[STORE.currentQuestion];
+  console.log(foo.correctAnswer);
+  for (let i = 0; i < 5; i++) {
+    
+    if ($(`option${i}`).val() === foo.correctAnswer){
+      STORE.score++;
       return true;
     } else {
       return false;
@@ -211,15 +222,12 @@ function answerChecker(){
   }
 }
 
-answerChecker();
 // This function handles users clicking the submit button on the question form
 // Parts of this code are disallowed and it will have to be modified before submission
 function handleQuestionFormSubmission(){
   $('main').on('click', '#submit-answer-btn', function(event){
     event.preventDefault();
-    const currentQuestion= STORE.questions[STORE.currentQuestion];
     generateFeedbackHtml(answerChecker());
-    STORE.currentQuestion++;
   });
 }
 
@@ -242,6 +250,7 @@ function handleQuizApp() {
   render();
   handleStartClick();
   handleNextQuestionClick();
+  answerChecker();
   handleQuestionFormSubmission();
   handleRestartButtonClick();
 }
