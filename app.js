@@ -101,8 +101,8 @@ function generateAnswersHtml(){
   answersArray.forEach(answer => {
     answersHtml += `
     <div id="option-container-${i}">
-      <input type="radio" name="options" id="option${i+1}" value=${i} tabindex="${i + 1} required>
-      <label for="option${i +1}">${answer}</label>
+      <input type="radio" name="options" id="option${i}" value=${i} tabindex="${i+1} required>
+      <label for="option${i}">${answer}</label>
     </div>
     `;
     i++;
@@ -198,37 +198,31 @@ function handleNextQuestionClick(){
   });
 }
 
+// This function does answer checky things
+
+function answerChecker(){
+  let currentQuestion = STORE.questions[STORE.currentQuestion];
+  for (let i = 0; i < 5; i++){
+    if ($(`options${i}`).val() === currentQuestion.correctAnswer){
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+answerChecker();
 // This function handles users clicking the submit button on the question form
 // Parts of this code are disallowed and it will have to be modified before submission
 function handleQuestionFormSubmission(){
   $('main').on('click', '#submit-answer-btn', function(event){
     event.preventDefault();
     const currentQuestion= STORE.questions[STORE.currentQuestion];
-    let selectedOption = $(answerChecker()).val();
-    let optionContainerId =`#option-container-${currentQuestion.answers.findIndex(i => i === selectedOption)}`;
-    if(selectedOption === currentQuestion.correctAnswer) {
-      STORE.score ++;
-      $(optionContainerId).html(generateFeedbackHtml('correct'));
-    } else {
-      $(optionContainerId).html(generateFeedbackHtml('incorrect'));
-    }
+    generateFeedbackHtml(answerChecker());
     STORE.currentQuestion++;
-    $('submit-answer-btn').hide();
-    $('input[type= radio]').each(() => {
-      $('input[type= radio]').attr('disabled', true);
-    });
-
   });
 }
 
-function answerChecker(){
-  for (let i = 0; i < 4; i++){
-    $(`#option${i}`).val();
-    console.log($(`#option${i}`).val());
-  }
-}
-
-answerChecker();
 // These functions handle users clicking the restart quiz button
 function restartQuiz(){
   STORE.quizStarted = false;
