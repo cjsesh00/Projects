@@ -12,7 +12,7 @@ const STORE = {
         'George Junior',
         'Steven'
       ],
-      correctAnswer: 1
+      correctAnswer: '1'
     },
     
     {
@@ -24,7 +24,7 @@ const STORE = {
         'Yosemite Sam',
         'Fred Flintstone'
       ],
-      correctAnswer:0
+      correctAnswer: '0'
     },
     {
       id: cuid(),
@@ -35,7 +35,7 @@ const STORE = {
         'Happy Springs Park',
         'Furry Creek'
       ],
-      correctAnswer: 0
+      correctAnswer: '0'
     },
     {
       id: cuid(),
@@ -46,7 +46,7 @@ const STORE = {
         'Spunky',
         'Tex'
       ],
-      correctAnswer: 2
+      correctAnswer: '2'
     },
     {
       id: cuid(),
@@ -57,7 +57,7 @@ const STORE = {
         'Rugby',
         'Basketball'
       ],
-      correctAnswer: 1
+      correctAnswer: '1'
     }
   ],
   quizStarted: false,
@@ -153,7 +153,7 @@ function generateResultsScreen(){
 function generateFeedbackHtml(i){
   let foo = 'Correct';
   let bar = 'Incorrect';
-  if(i === true) {
+  if(i) {
     i = foo;
   } else {
     i = bar;
@@ -221,19 +221,15 @@ function handleQuestionFormSubmission(){
   $('main').on('click', '#submit-answer-btn', function(event){
     event.preventDefault();
     let foo = STORE.questions[STORE.currentQuestion];
-    
+    let selectedOption = $('input[type="radio"]:checked').val();
+    console.log(selectedOption);
     for (let i = 0; i < 4; i++) {
-      if($(`#options${i}`.checked === true)){
-        console.log('we made it inside the 1st if statement');
-        console.log(`${$(`#option${i}`).value}`)
-        if(foo.correctAnswer === $(`#option${i}`).value){
-          console.log("inside 2nd if statement...");
-          STORE.score++;
-          generateFeedbackHtml(true);
-        }
-        console.log("never made into 2nd if statement");
+      if (selectedOption === foo.correctAnswer){
+        //console.log('Hello from inside the if statement');
+        STORE.score++;
+        generateFeedbackHtml(true);
+        return;
       }
-      generateFeedbackHtml(false);
     }
   });
 }
