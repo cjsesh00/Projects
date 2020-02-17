@@ -81,7 +81,7 @@ function generateStartScreenHtml(){
 // This function returns the HTML template for the question number and score display
 function generateQuestionNumberAndScoreHtml() {
   return `
-  <ul class="question and score">
+  <ul class="question-and-score">
     <li id="question-number">
       Question Number: ${STORE.currentQuestion + 1}/${STORE.questions.length}
     </li>
@@ -100,8 +100,8 @@ function generateAnswersHtml(){
 
   answersArray.forEach(answer => {
     answersHtml += `
-    <div id="option-container-${i}">
-      <input type="radio" name="options" id="option${i}" value=${i} tabindex="${i+1} required>
+    <div id="option-container-${i}" class="answer">
+      <input class="radio" type="radio" name="options" id="option${i}" value=${i} tabindex="${i+1} required>
       <label for="option${i}">${answer}</label>
     </div>
     `;
