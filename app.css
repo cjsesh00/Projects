@@ -14,6 +14,8 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  background-image: url(bg.jpg);
+  color: white;
 }
 
 main {
@@ -34,8 +36,35 @@ button {
   margin-left: auto;
   margin-right: auto;
   align-self: flex-end;
+  background-color: #D05353;
 }
-
+button {
+  background: #723f80;
+  background: -webkit-gradient(linear, left top, left bottom, from(#e38d32), to(#723f80));
+  background: -webkit-linear-gradient(top, #e38d32, #723f80);
+  background: -moz-linear-gradient(top, #e38d32, #723f80);
+  background: -ms-linear-gradient(top, #e38d32, #723f80);
+  background: -o-linear-gradient(top, #e38d32, #723f80);
+  -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+  box-shadow: rgba(0,0,0,1) 0 1px 0;
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  color: white;
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  vertical-align: middle;
+  border: none;
+  }
+.button:hover {
+  border-top-color: #56a857;
+  background: #56a857;
+  color: #ccc;
+  }
+.button:active {
+  border-top-color: #1b435e;
+  background: #1b435e;
+  }
 .start-screen {
   display: flex;
   flex-direction: column;
@@ -46,22 +75,23 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  list-style: none;
+  font-size: 20px;
 }
 
 .answer {
   display: flex;
+  font-size: 24px;
 }
 
 .radio{
   align-items: center;
+  margin-bottom: 1em;
 } 
 
 form {
   position: relative;
   margin 0;
-}
-fieldset {
-  
 }
 
 ul {
@@ -69,4 +99,21 @@ ul {
   flex-direction: column;
   align-items: center;
   padding: 0;
+}
+
+fieldset {
+  border: none;
+  padding-top: 3em;
+}
+
+legend {
+  font-size: 2em;
+  padding-bottom: 2em;
+}
+
+
+input[type="radio"] {
+    height: 1em;
+    width: 1em;
+    margin-right: 10px;
 }
