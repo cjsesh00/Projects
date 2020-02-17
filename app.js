@@ -125,7 +125,6 @@ function generateQuestionHtml(){
           </div>
         </div>
         <button type="submit" id="submit-answer-btn" tabindex="5">Submit</button>
-        <button type="button" id="next-question-btn" tabindex="6">Next</button>
       </fieldset>
     </form>
   `;
@@ -149,18 +148,21 @@ function generateResultsScreen(){
 }
 
 
-// This function generates the feedback html
-function generateFeedbackHtml(i){
-  let foo = 'Correct';
-  let bar = 'Incorrect';
-  if(i) {
-    i = foo;
-  } else {
-    i = bar;
-  }
+// These functions generate the feedback html
+function generateGoodFeedbackHtml(){
   return `
-  <div class="feedback">
-    <h2>Your answer was ${i}!</h2>
+  <div class="good-feedback">
+    <h2>You got the right answer!</h2>
+    <button type="button" id="next-question-btn" tabindex="6">Next</button>
+  </div>
+  `;
+}
+
+function generateBadFeedbackHtml(){
+  return `
+  <div class="bad-feedback">
+    <h2>You got the wrong answer!</h2>
+    <button type="button" id="next-question-btn" tabindex="6">Next</button>
   </div>
   `;
 }
@@ -186,6 +188,18 @@ function render() {
   }
 }
 
+function renderGoodFeedback(){
+  let html = '';
+  html = generateGoodFeedbackHtml();
+  $('main').html(html);
+}
+
+function renderBadFeedback(){
+  let html = '';
+  html = generateBadFeedbackHtml();
+  $('main').html(html);
+}
+
 /******************* EVENT HANDLER FUNCTIONS *******************/
 // These functions handle events (submit, click, etc)
 
@@ -205,16 +219,6 @@ function handleNextQuestionClick(){
   });
 }
 
-// This function does answer checky things
-
-function answerChecker(myVal){
-  
-
-  
-    
-}
-
-
 // This function handles users clicking the submit button on the question form
 function handleQuestionFormSubmission(){
   $('main').on('click', '#submit-answer-btn', function(event){
@@ -224,10 +228,11 @@ function handleQuestionFormSubmission(){
     console.log(selectedOption);
     for (let i = 0; i < 4; i++) {
       if (selectedOption === foo.correctAnswer){
-        //console.log('Hello from inside the if statement');
         STORE.score++;
-        generateFeedbackHtml(true);
+        renderGoodFeedback();
         return;
+      } else {
+        renderBadFeedback();
       }
     }
   });
@@ -252,7 +257,6 @@ function handleQuizApp() {
   render();
   handleStartClick();
   handleNextQuestionClick();
-  answerChecker();
   handleQuestionFormSubmission();
   handleRestartButtonClick();
 }
