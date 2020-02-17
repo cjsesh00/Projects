@@ -101,7 +101,7 @@ function generateAnswersHtml(){
   answersArray.forEach(answer => {
     answersHtml += `
     <div id="option-container-${i}" class="answer">
-      <input class="radio" type="radio" name="options" id="option${i}" value=${i} tabindex="${i+1} required>
+      <input class="radio" type="radio" name="options" id="option${i}" value="${i}" tabindex="${i+1}">
       <label for="option${i}">${answer}</label>
     </div>
     `;
@@ -124,7 +124,7 @@ function generateQuestionHtml(){
             ${generateAnswersHtml()}
           </div>
         </div>
-        <button type="submit" name="options" id="submit-answer-btn" tabindex="5">Submit</button>
+        <button type="submit" name="options" id="submit-answer-btn" tabindex="5" required>Submit</button>
       </fieldset>
     </form>
   `;
@@ -226,14 +226,17 @@ function handleQuestionFormSubmission(){
     event.preventDefault();
     let foo = STORE.questions[STORE.currentQuestion];
     let selectedOption = $('input[type="radio"]:checked').val();
-    console.log(selectedOption);
     for (let i = 0; i < 4; i++) {
       if (selectedOption === foo.correctAnswer){
         STORE.score++;
         renderGoodFeedback();
         return;
+      } else if (selectedOption === undefined){
+        alert("You must select at least 1 answer");
+        return; 
       } else {
         renderBadFeedback();
+        return;
       }
     }
   });
