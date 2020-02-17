@@ -75,7 +75,7 @@ function generateStartScreenHtml(){
   <div class = "start-screen">
   <h1>How well do you know your favorite cartoon characters</h1>
   <button type="button" id="start">Start Quiz</button>
-  <div>
+  </div>
   `;
 }
 // This function returns the HTML template for the question number and score display
