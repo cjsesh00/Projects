@@ -124,7 +124,7 @@ function generateQuestionHtml(){
             ${generateAnswersHtml()}
           </div>
         </div>
-        <button type="submit" id="submit-answer-btn" tabindex="5">Submit</button>
+        <button type="submit" name="options" id="submit-answer-btn" tabindex="5">Submit</button>
       </fieldset>
     </form>
   `;
@@ -139,6 +139,7 @@ function generateResultsScreen(){
         <div class="row">
           <div class="col-12">
             <legend>Your Score is: ${STORE.score}</legend>
+            <button type="input" id="restart" tabindex="5">Restart</button>
           </div>
         </div>
       </fieldset>
