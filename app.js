@@ -17,7 +17,7 @@ const STORE = {
     
     {
       id: cuid(),
-      question: 'Which cartoon character\'s catchphrase was \'It\'s wabbit season and I\'m hunting wabbits?',
+      question: 'Which cartoon character\'s catchphrase was \"It\'s wabbit season and I\'m hunting wabbits?\"',
       answers: [
         'Elmer Fudd',
         'Wiley Coyote',
@@ -73,7 +73,7 @@ const STORE = {
 function generateStartScreenHtml(){
   return `
   <div class = "start-screen">
-  <h1>How well do you know your favorite cartoon characters</h1>
+  <h1>How well do you know your favorite cartoon characters?</h1>
   <button type="button" id="start">Start Quiz</button>
   </div>
   `;
