@@ -189,6 +189,7 @@ function render() {
   }
 }
 
+// These functions render user feedback pages
 function renderGoodFeedback(){
   let html = '';
   html = generateGoodFeedbackHtml();
