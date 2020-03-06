@@ -1,5 +1,5 @@
 # quiz-app-cz
-Starter code for Engineering Immersion's Quiz App project
+https://cjsesh00.github.io/Projects/   <---Live App
 
 /**This is the quiz App required for submission in lesson 10 of 'Interactive Web Apps'.
 We are learning how to implement jQuery in combo with javaScript to render our HTML dynamically based on user interaction.
